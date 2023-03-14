@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xx.dao.CookDao">
+    <select id="findAll" resultType="com.xx.entity.Cook">
+        select id,name,img,time,people,zhaiyao,buzhou from b_tomato;
+    </select>
+    <insert id="add" parameterType="com.xx.entity.Cook">
+        insert into b_tomato values (#{id},#{name},#{img},#{time},#{people},#{zhaiyao},#{buzhou})
+    </insert>
+    <select id="selectOne" resultType="com.xx.entity.Cook" parameterType="String">
+        select id,name,img,time,people,zhaiyao,buzhou from b_tomato
+        where id=#{id}
+    </select>
+    <update id="update" parameterType="com.xx.entity.Cook">
+        update b_tomato
+        <set>
+            <if test="name!=null">name=#{name},</if>
+            <if test="img!=null">img=#{img},</if>
+            <if test="time!=null">time=#{time},</if>
+            <if test="people!=null">people=#{people},</if>
+            <if test="zhaiyao!=null">zhaiyao=#{zhaiyao},</if>
+            <if test="buzhou!=null">buzhou=#{buzhou}</if>
+        </set>
+        where id=#{id}
+    </update>
+    <delete id="delete" parameterType="String">
+        delete from b_tomato
+        where id=#{id}
+    </delete>
+</mapper>
